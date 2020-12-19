@@ -7,6 +7,9 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devServer: {
+    contentBase: './dist',
+  },
   module: {
     rules: [
       {
@@ -22,5 +25,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
     	template: 'template.html',
-    })],
+    }),
+  ],
 };

@@ -2,20 +2,40 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Hexlet project RSS</title>
+	<title></title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
-	<div class="jumbotron">
-		<div class="form-group">
-			<label for="input-url">Enter URL</label>
-			<input type="url" id="input-url" class="form-control">
+	<div class="modal" id="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"></div>
+				<div class="modal-body"></div>
+			</div>
 		</div>
-		
-		<p class="lead">
-			<a class="btn btn-primary btn-lg" href="#" role="button">Add channel</a>
-		</p>
 	</div>
-	<script src="main.js"></script>
+	<div class="jumbotron">
+		<form id="rss-form">
+			<div class="form-row">
+				<div class="col-3"><input id="rss-input" class="form-control" value=""></div>
+				<div class="col"><button type="submit" class="btn btn-primary" name="addChannelBtn"></button></div>
+				<div id="feedback"></div>
+			</div>
+		</form>
+	</div>
+	<div class="container-xl">
+		<div class="row">
+			<div id="feeds" class="col-md-10 col-lg-8 mx-auto">
+				<h2></h2>
+				<ul id='feeds-list' class="list-group"></ul>
+			</div>
+		</div>
+		<div class="row">
+			<div id="posts" class="col-md-10 col-lg-8 mx-auto">
+				<h2></h2>
+				<div id="posts-container"></div>
+			</div>
+    	</div>
+	</div>
 </body>
 </html>
