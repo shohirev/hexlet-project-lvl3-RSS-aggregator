@@ -1,8 +1,11 @@
 env:
   browser: true
-  es2020: true
-extends: 'eslint:recommended'
+  es2021: true
+extends:
+  - airbnb-base
 parserOptions:
-  ecmaVersion: 11
+  ecmaVersion: 12
   sourceType: module
-rules: {}
+rules: {
+  no-param-reassign: 0
+}
