@@ -28,7 +28,7 @@ const decorate = (process) => {
 const renderTemplate = () => {
   const mainTitle = document.querySelector('title');
   mainTitle.textContent = i18next.t('templateText.title');
-
+const inputField = document.getElementById('rss-input');
   inputField.placeholder = i18next.t('templateText.placeholder');
 
   const addChannelsBtn = document.querySelector('.btn[name=addChannelsBtn]');
