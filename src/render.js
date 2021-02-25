@@ -1,7 +1,18 @@
 import i18next from 'i18next';
 import _ from 'lodash';
 
-const formFieldset = document.querySelector('fieldset');
+/*const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');*/
+
+const decorate = (process) => {
+  const formFieldset = document.querySelector('fieldset');
 const inputField = document.getElementById('rss-input');
 const feedbackContainer = document.getElementById('feedback');
 const feedsListTitle = document.querySelector('div#feeds h2');
@@ -11,7 +22,7 @@ const postsList = document.getElementById('posts-list');
 const modalLinkBtn = document.getElementById('modalLinkBtn');
 const modalCloseBtn = document.getElementById('modalCloseBtn');
 
-const decorate = (process) => {
+
   switch (process) {
     case 'processingError':
       inputField.classList.add('border', 'border-danger');
@@ -26,9 +37,20 @@ const decorate = (process) => {
 };
 
 const renderTemplate = () => {
+  const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+
   const mainTitle = document.querySelector('title');
   mainTitle.textContent = i18next.t('templateText.title');
-const inputField = document.getElementById('rss-input');
+
   inputField.placeholder = i18next.t('templateText.placeholder');
 
   const addChannelsBtn = document.querySelector('.btn[name=addChannelsBtn]');
@@ -39,10 +61,30 @@ const inputField = document.getElementById('rss-input');
 };
 
 const renderRequest = () => {
+  const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+
   formFieldset.setAttribute('disable', 'disable');
 };
 
 const renderError = (model) => {
+  const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+
   decorate(model.process);
 
   const currentError = _.last(model.errors);
@@ -53,6 +95,17 @@ const renderError = (model) => {
 };
 
 const renderPosts = (model) => {
+  const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+
   postsList.innerHTML = '';
   postsListTitle.textContent = i18next.t('templateText.postsListTitle');
 
@@ -104,6 +157,17 @@ const renderPosts = (model) => {
 };
 
 const renderFeeds = (model) => {
+  const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+
   feedsList.innerHTML = '';
 
   decorate(model.process);
@@ -125,6 +189,17 @@ const renderFeeds = (model) => {
 };
 
 const presentPreview = (model) => {
+  const formFieldset = document.querySelector('fieldset');
+const inputField = document.getElementById('rss-input');
+const feedbackContainer = document.getElementById('feedback');
+const feedsListTitle = document.querySelector('div#feeds h2');
+const postsListTitle = document.querySelector('div#posts h2');
+const feedsList = document.getElementById('feeds-list');
+const postsList = document.getElementById('posts-list');
+const modalLinkBtn = document.getElementById('modalLinkBtn');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+
   const modalTitle = document.querySelector('.modal-title');
   modalTitle.textContent = model.uiState.modalWindow.title;
 
