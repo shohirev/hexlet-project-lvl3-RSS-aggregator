@@ -36,7 +36,7 @@ export default () => {
 
   i18next.init(
     {
-      lng: 'en',
+      lng: 'ru',
       resources,
     },
     renderTemplate,

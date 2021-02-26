@@ -167,13 +167,13 @@ const postsList = document.getElementById('posts-list');
 const modalLinkBtn = document.getElementById('modalLinkBtn');
 const modalCloseBtn = document.getElementById('modalCloseBtn');
 
-
+feedbackContainer.textContent = i18next.t('successfulLoadingReport');
   feedsList.innerHTML = '';
 
   decorate(model.process);
 
   feedsListTitle.textContent = i18next.t('templateText.feedsListTitle');
-  feedbackContainer.textContent = i18next.t('successfulLoadingReport');
+  
 
   _.forEach(model.feeds, (feed) => {
     const newFeedsListItem = document.createElement('li');
