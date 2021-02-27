@@ -76,7 +76,6 @@ export default () => {
         watchedState.process = 'processingError';
       })
       .then((data) => {
-        document.getElementById('feedback').textContent = 'RSS успешно загружен';
         const parsedRssChannel = parseRSS(data.contents);
         watchedState.loadedFeeds.push(rssChannelUrl);
 
