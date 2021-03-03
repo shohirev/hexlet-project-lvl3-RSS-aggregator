@@ -76,6 +76,7 @@ export default () => {
         watchedState.process = 'processingError';
       })
       .then((data) => {
+      	watchedState.process = 'processingFeeds';
         const parsedRssChannel = parseRSS(data.contents);
         watchedState.loadedFeeds.push(rssChannelUrl);
 
