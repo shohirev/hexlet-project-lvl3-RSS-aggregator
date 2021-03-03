@@ -14,7 +14,7 @@ export default {
     },
     errorFeedback: {
       duplicationUrlError: 'RSS already exists',
-      invalidRssUrlError: 'This source doesn\'t contain valid RSS',
+      invalidRssUrlError: "This source doesn't contain valid RSS",
       networkError: 'Network error, try again later...',
       parsingError: 'Unable to read downloaded channel, try again later...',
     },

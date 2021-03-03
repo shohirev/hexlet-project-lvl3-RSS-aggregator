@@ -2,15 +2,18 @@ import onChange from 'on-change';
 import * as yup from 'yup';
 import axios from 'axios';
 import i18next from 'i18next';
-import { renderTemplate, render } from './render';
+import View from './View';
 import resources from './locales/index';
 import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
 export default () => {
+  const view = new View();
+  view.init();
+
   const state = {
-    process: null,
+    process: 'waiting',
     feeds: [],
     items: {},
     loadedFeeds: [],
@@ -25,21 +28,18 @@ export default () => {
     },
   };
 
-  const watchedState = onChange(
-    state,
-    (changedStateSection) => {
-      if (changedStateSection === 'process') {
-        render(watchedState);
-      }
-    },
-  );
+  const watchedState = onChange(state, (changedStateSection) => {
+    if (changedStateSection === 'process') {
+      view.render(watchedState);
+    }
+  });
 
   i18next.init(
     {
       lng: 'ru',
       resources,
     },
-    renderTemplate,
+    view.renderTemplate.bind(view),
   );
 
   const form = document.getElementById('rss-form');
@@ -88,7 +88,10 @@ export default () => {
         const link = parsedRssChannel.querySelector('channel link').textContent;
         watchedState.feeds = [
           {
-            feedId, title, description, link,
+            feedId,
+            title,
+            description,
+            link,
           },
           ...watchedState.feeds,
         ];
