@@ -34,7 +34,8 @@ export default () => {
     }
   });
 
-  i18next.init(
+  const i18nextInstance = i18next.createInstance();
+  i18nextInstance.init(
     {
       lng: 'ru',
       resources,
