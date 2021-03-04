@@ -1,8 +1,8 @@
-import i18next from 'i18next';
 import _ from 'lodash';
 
 export default class View {
-  init() {
+  init(i18nextInstance) {
+    this.i18nextInstance = i18nextInstance;
     this.mainTitle = document.querySelector('title');
     this.addChannelsBtn = document.querySelector('.btn[name=addChannelsBtn]');
     this.formFieldset = document.querySelector('fieldset');
@@ -48,14 +48,14 @@ export default class View {
   }
 
   renderTemplate() {
-    this.mainTitle.textContent = i18next.t('templateText.title');
+    this.mainTitle.textContent = this.i18nextInstance.t('templateText.title');
 
-    this.inputField.placeholder = i18next.t('templateText.placeholder');
+    this.inputField.placeholder = this.i18nextInstance.t('templateText.placeholder');
 
-    this.addChannelsBtn.textContent = i18next.t('templateText.addChannelsBtn');
+    this.addChannelsBtn.textContent = this.i18nextInstance.t('templateText.addChannelsBtn');
 
-    this.modalLinkBtn.textContent = i18next.t('templateText.modal.linkBtn');
-    this.modalCloseBtn.textContent = i18next.t('templateText.modal.closeBtn');
+    this.modalLinkBtn.textContent = this.i18nextInstance.t('templateText.modal.linkBtn');
+    this.modalCloseBtn.textContent = this.i18nextInstance.t('templateText.modal.closeBtn');
   }
 
   renderRequest() {
@@ -66,7 +66,7 @@ export default class View {
     this.decorateFeedback(model.process);
 
     const currentError = _.last(model.errors);
-    this.feedbackContainer.textContent = i18next.t(
+    this.feedbackContainer.textContent = this.i18nextInstance.t(
       `errorFeedback.${currentError.type}`,
     );
 
@@ -75,7 +75,7 @@ export default class View {
 
   renderPosts(model) {
     this.postsList.innerHTML = '';
-    this.postsListTitle.textContent = i18next.t('templateText.postsListTitle');
+    this.postsListTitle.textContent = this.i18nextInstance.t('templateText.postsListTitle');
 
     _.forEach(model.feeds, (feed) => {
       const { feedId } = feed;
@@ -106,7 +106,7 @@ export default class View {
         postButton.classList.add('previewBtn', 'btn', 'btn-primary', 'btn-sm');
         postButton.dataset.toggle = 'modal';
         postButton.dataset.target = '#modal';
-        postButton.textContent = i18next.t('templateText.previewBtn');
+        postButton.textContent = this.i18nextInstance.t('templateText.previewBtn');
 
         postButton.addEventListener('click', () => {
           model.uiState.readItems.push(item.title);
@@ -125,12 +125,12 @@ export default class View {
   }
 
   renderFeeds(model) {
-    this.feedbackContainer.textContent = i18next.t('successfulLoadingReport');
+    this.feedbackContainer.textContent = this.i18nextInstance.t('successfulLoadingReport');
     this.feedsList.innerHTML = '';
 
     this.decorateFeedback(model.process);
 
-    this.feedsListTitle.textContent = i18next.t('templateText.feedsListTitle');
+    this.feedsListTitle.textContent = this.i18nextInstance.t('templateText.feedsListTitle');
 
     _.forEach(model.feeds, (feed) => {
       const newFeedsListItem = document.createElement('li');

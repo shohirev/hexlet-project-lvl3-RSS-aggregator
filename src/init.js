@@ -10,7 +10,6 @@ import update from './updateFeed';
 
 export default () => {
   const view = new View();
-  view.init();
 
   const state = {
     process: 'waiting',
@@ -34,13 +33,15 @@ export default () => {
     }
   });
 
-  //const i18nextInstance = i18next.createInstance();
-  i18next.init(
+  const i18nextInstance = i18next.createInstance();
+  i18nextInstance.init(
     {
       lng: 'ru',
       resources,
+    }, () => {
+      view.init(i18nextInstance);
+      view.renderTemplate.bind(view)();
     },
-    view.renderTemplate.bind(view),
   );
 
   const form = document.getElementById('rss-form');
