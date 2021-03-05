@@ -33,7 +33,7 @@ export default async () => {
     }
   });
 
-  const i18nextInstance = i18next.createInstance();
+  const i18nextInstance = await i18next.createInstance();
   await i18nextInstance.init(
     {
       lng: 'ru',
