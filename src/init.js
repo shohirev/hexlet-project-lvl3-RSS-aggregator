@@ -33,16 +33,16 @@ export default async () => {
     }
   });
 
-  const i18nextInstance = await i18next.createInstance();
-  await i18nextInstance.init(
+  const i18nextInstance = i18next.createInstance();
+  i18nextInstance.init(
     {
       lng: 'ru',
       resources,
-    }, () => {
-      view.init(i18nextInstance);
-      view.renderTemplate.bind(view)();
-    },
-  );
+    })
+  .then((t) => {
+    view.init(t);
+    view.renderTemplate.bind(view)();
+  });
 
   const form = document.getElementById('rss-form');
 
