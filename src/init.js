@@ -45,8 +45,6 @@ export default () => {
     view.renderTemplate.bind(view)();
   });
 
-  console.log('in init')
-
   const form = document.getElementById('rss-form');
 
   form.addEventListener('submit', (e) => {
@@ -55,6 +53,7 @@ export default () => {
     watchedState.process = 'processingRequest';
 
     const rssChannelUrl = document.getElementById('rss-input').value;
+    console.log('input value:', rssChannelUrl)
 
     const rssUrlValidationSchema = yup
       .string()
