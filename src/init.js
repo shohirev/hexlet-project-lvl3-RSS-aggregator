@@ -46,7 +46,7 @@ export default async () => {
 
   const form = document.getElementById('rss-form');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     watchedState.process = 'processingRequest';
@@ -70,7 +70,7 @@ export default async () => {
       return;
     }
 
-    axios
+    await axios
       .get(proxify(rssChannelUrl))
       .then((response) => response.data)
       .catch((networkError) => {
