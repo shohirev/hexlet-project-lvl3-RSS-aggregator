@@ -8,7 +8,7 @@ import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
-export default () => {
+export default async () => {
   const view = new View();
 
   const state = {
