@@ -50,6 +50,8 @@ export default () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    console.log('start submit handling')
+
     watchedState.process = 'processingRequest';
 
     const rssChannelUrl = document.getElementById('rss-input').value;
