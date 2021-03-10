@@ -8,7 +8,7 @@ import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
-export default async () => {
+export default () => {
   const view = new View();
 
   const state = {
@@ -33,8 +33,8 @@ export default async () => {
     }
   });
 
-  const i18nextInstance =  await i18next.createInstance();
-  await i18nextInstance.init(
+  const i18nextInstance = i18next.createInstance();
+  i18nextInstance.init(
     {
       lng: 'ru',
       resources,
@@ -46,7 +46,7 @@ export default async () => {
 
   const form = document.getElementById('rss-form');
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     watchedState.process = 'processingRequest';
@@ -70,7 +70,7 @@ export default async () => {
       return;
     }
 
-    await axios
+    axios
       .get(proxify(rssChannelUrl))
       .then((response) => response.data)
       .catch((networkError) => {
