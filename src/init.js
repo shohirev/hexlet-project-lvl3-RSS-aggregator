@@ -9,6 +9,7 @@ import parseRSS from './RSSParser';
 import update from './updateFeed';
 
 export default () => {
+  console.log('start init.js')
   const view = new View();
 
   const state = {
@@ -127,4 +128,5 @@ export default () => {
         watchedState.process = 'processingError';
       });
   });
+  console.log('finish init.js')
 };
