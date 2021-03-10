@@ -9,7 +9,6 @@ import parseRSS from './RSSParser';
 import update from './updateFeed';
 
 export default () => {
-  console.log('start init')
   const view = new View();
 
   const state = {
@@ -53,7 +52,6 @@ export default () => {
     watchedState.process = 'processingRequest';
 
     const rssChannelUrl = document.getElementById('rss-input').value;
-    console.log('input value:', rssChannelUrl)
 
     const rssUrlValidationSchema = yup
       .string()
