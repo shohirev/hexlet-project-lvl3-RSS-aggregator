@@ -29,6 +29,7 @@ export default () => {
 
   const watchedState = onChange(state, (changedStateSection) => {
     if (changedStateSection === 'process') {
+      console.log('new process:', watchedState.process)
       view.render(watchedState);
     }
   });
