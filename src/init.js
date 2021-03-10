@@ -8,7 +8,7 @@ import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
-export default async () => {
+export default () => {
   const view = new View();
 
   const state = {
@@ -49,7 +49,6 @@ export default async () => {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('form submit')
 
     watchedState.process = 'processingRequest';
 
