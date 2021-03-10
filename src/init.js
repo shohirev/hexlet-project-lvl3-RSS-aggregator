@@ -8,7 +8,7 @@ import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
-export default () => {
+export default async () => {
   const view = new View();
 
   const state = {
@@ -33,8 +33,8 @@ export default () => {
     }
   });
 
-  const i18nextInstance = i18next.createInstance();
-  i18nextInstance.init(
+  const i18nextInstance =  await i18next.createInstance();
+  await i18nextInstance.init(
     {
       lng: 'ru',
       resources,
