@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 export default class View {
   init(i18nextInstance) {
+    console.log('in View')
     this.i18nextInstance = i18nextInstance;
     this.mainTitle = document.querySelector('title');
     this.addChannelsBtn = document.querySelector('.btn[name=addChannelsBtn]');
@@ -59,7 +60,7 @@ export default class View {
   }
 
   renderRequest() {
-    this.formFieldset.setAttribute('disable', 'disable');
+    //this.formFieldset.setAttribute('disable', 'disable');
   }
 
   renderError(model) {

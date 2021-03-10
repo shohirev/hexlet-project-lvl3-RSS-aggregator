@@ -16,7 +16,7 @@ export default {
       duplicationUrlError: 'RSS уже существует',
       invalidRssUrlError: 'Ссылка должна быть валидным URL',
       networkError: 'Network error, try again later...',
-      parsingError: 'Unable to read downloaded channel, try again later...',
+      parsingError: 'Ресурс не содержит валидный RSS',
     },
     successfulLoadingReport: 'RSS успешно загружен',
   },

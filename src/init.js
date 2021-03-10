@@ -8,7 +8,8 @@ import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
-export default async () => {
+export default () => {
+  console.log('start init')
   const view = new View();
 
   const state = {
@@ -43,6 +44,8 @@ export default async () => {
     view.init(t);
     view.renderTemplate.bind(view)();
   });
+
+  console.log('in init')
 
   const form = document.getElementById('rss-form');
 
