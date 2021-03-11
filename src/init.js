@@ -48,7 +48,7 @@ export default () => {
 
   const form = document.getElementById('rss-form');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     console.log('start submit handling')
@@ -74,7 +74,7 @@ export default () => {
       return;
     }
 
-    axios
+    return axios
       .get(proxify(rssChannelUrl))
       .then((response) => response.data)
       .catch((networkError) => {
