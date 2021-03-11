@@ -19,9 +19,10 @@ export default () => {
   .then((t) => {
     view.init(t);
     view.renderTemplate.bind(view)();
-    
+
   })
   .then(() => {
+    console.log('in promise start')
     const state = {
       process: 'waiting',
       feeds: [],
