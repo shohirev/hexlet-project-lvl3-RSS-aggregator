@@ -19,6 +19,7 @@ export default () => {
   .then((t) => {
     view.init(t);
     view.renderTemplate.bind(view)();
+    
   })
   .then(() => {
     const state = {

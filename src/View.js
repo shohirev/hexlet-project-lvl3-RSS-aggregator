@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 export default class View {
   init(i18nextInstance) {
+    console.log('render init start')
     this.i18nextInstance = i18nextInstance;
     this.mainTitle = document.querySelector('title');
     this.addChannelsBtn = document.querySelector('.btn[name=addChannelsBtn]');
@@ -19,6 +20,7 @@ export default class View {
   }
 
   render(model) {
+    console.log('render start')
     const mapping = {
       processingRequest: 'renderRequest',
       processingError: 'renderError',
