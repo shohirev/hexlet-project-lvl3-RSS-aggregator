@@ -8,64 +8,22 @@ import proxify from './proxify';
 import parseRSS from './RSSParser';
 import update from './updateFeed';
 
-export default () => {
-  const view = new View();
-  const i18nextInstance = i18next.createInstance();
-  return i18nextInstance.init(
-    {
-      lng: 'ru',
-      resources,
-    })
-  .then((t) => {
-    view.init(t);
-    view.renderTemplate.bind(view)();
+const submitHandler = (submitEvent, model) => {
+  e.preventDefault();
 
-  })
-  .then(() => {
-    console.log('in promise start')
-    const state = {
-      process: 'waiting',
-      feeds: [],
-      items: {},
-      loadedFeeds: [],
-      errors: [],
-      uiState: {
-        readItems: [],
-        modalWindow: {
-          title: null,
-          body: null,
-          link: null,
-        },
-      },
-    };
+  model.process = 'processingRequest';
 
-    const watchedState = onChange(state, (changedStateSection) => {
-    if (changedStateSection === 'process') {
-      console.log('new process:', watchedState.process)
-      view.render(watchedState);
-    }
-  });
+  const rssChannelUrl = document.getElementById('rss-input').value;
 
-  const form = document.getElementById('rss-form');
+  const rssUrlValidationSchema = yup
+    .string()
+    .notOneOf(watchedState.loadedFeeds, 'duplicationUrlError')
+    .matches(
+      /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([w#!:.?+=&%@!]))?/,
+      'invalidRssUrlError',
+    );
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    console.log('start submit handling')
-
-    watchedState.process = 'processingRequest';
-
-    const rssChannelUrl = document.getElementById('rss-input').value;
-
-    const rssUrlValidationSchema = yup
-      .string()
-      .notOneOf(watchedState.loadedFeeds, 'duplicationUrlError')
-      .matches(
-        /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([w#!:.?+=&%@!]))?/,
-        'invalidRssUrlError',
-      );
-
-    try {
+  try {
       rssUrlValidationSchema.validateSync(rssChannelUrl);
     } catch (validationError) {
       const errorMessage = validationError.errors[0];
@@ -127,7 +85,49 @@ export default () => {
         watchedState.errors.push({ error: parsingError, type: 'parsingError' });
         watchedState.process = 'processingError';
       });
+};
+
+export default () => {
+  const view = new View();
+  const i18nextInstance = i18next.createInstance();
+  return i18nextInstance.init(
+    {
+      lng: 'ru',
+      resources,
+    })
+  .then((t) => {
+    view.init(t);
+    view.renderTemplate.bind(view)();
+
+  })
+  .then(() => {
+    console.log('in promise start')
+    const state = {
+      process: 'waiting',
+      feeds: [],
+      items: {},
+      loadedFeeds: [],
+      errors: [],
+      uiState: {
+        readItems: [],
+        modalWindow: {
+          title: null,
+          body: null,
+          link: null,
+        },
+      },
+    };
+
+    const watchedState = onChange(state, (changedStateSection) => {
+    if (changedStateSection === 'process') {
+      console.log('new process:', watchedState.process)
+      view.render(watchedState);
+    }
   });
+
+  const form = document.getElementById('rss-form');
+
+  form.addEventListener('submit', submitHandler);
   });
 
 
