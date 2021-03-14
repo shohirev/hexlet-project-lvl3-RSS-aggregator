@@ -87,7 +87,7 @@ const submitHandler = (submitEvent, model) => {
       });
 };
 
-export default () => {
+export default async () => {
   const view = new View();
   const i18nextInstance = i18next.createInstance();
   return i18nextInstance.init(
