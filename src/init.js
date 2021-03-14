@@ -131,6 +131,8 @@ export default () => {
     e.preventDefault();
     console.log('submit');
   });
+
+  return 'resolve';
   });
 };
 
