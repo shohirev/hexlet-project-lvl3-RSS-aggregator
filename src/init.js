@@ -87,10 +87,7 @@ const submitHandler = (submitEvent, model) => {
       });
 };
 
-export default async () => {
-
-  const initInstance = i18next.createInstance();
-  await initInstance.init(
+export default async () => i18next.createInstance().init(
     {
       lng: 'ru',
       resources,
@@ -135,7 +132,6 @@ export default async () => {
   console.log('listener is added')
   return view;
   });
-};
 
 
   /*const state = {
