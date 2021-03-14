@@ -127,8 +127,12 @@ export default () => {
 
   const form = document.getElementById('rss-form');
 
-  form.addEventListener('submit', submitHandler);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('submit');
   });
+  });
+};
 
 
   /*const state = {
@@ -238,4 +242,4 @@ export default () => {
         watchedState.process = 'processingError';
       });
   });*/
-};
+//};
