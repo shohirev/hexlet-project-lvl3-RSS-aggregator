@@ -5,7 +5,7 @@ export default class View {
     console.log('render init start')
     this.i18nextInstance = i18nextInstance;
     this.mainTitle = document.querySelector('title');
-    this.addChannelsBtn = document.querySelector('.btn[name=addChannelsBtn]');
+    this.addChannelsBtn = document.querySelector('.btn[name=add]');
     this.formFieldset = document.querySelector('fieldset');
     this.inputField = document.getElementById('rss-input');
     this.feedbackContainer = document.getElementById('feedback');

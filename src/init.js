@@ -126,7 +126,7 @@ export default () => {
   });
 
   const form = document.getElementById('rss-form');
-  const button = document.querySelector('button[name=addChannelsBtn]');
+  const button = document.querySelector('button[name=add]');
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
