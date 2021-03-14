@@ -130,7 +130,7 @@ export default () => {
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('click');
+    document.getElementById('feedback').textContent = 'RSS успешно загружен';
   });
 
   return 'resolve';
