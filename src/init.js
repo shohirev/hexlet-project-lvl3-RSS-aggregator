@@ -103,7 +103,7 @@ export default async () => {
   })
   .then((view) => {
     console.log('in promise start')
-    const state = {
+    /*const state = {
       process: 'waiting',
       feeds: [],
       items: {},
@@ -124,16 +124,15 @@ export default async () => {
       console.log('new process:', watchedState.process)
       view.render(watchedState);
     }
-  });
+  });*/
 
-  const form = document.getElementById('rss-form');
   const button = document.querySelector('button[name=add]');
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('feedback').textContent = 'RSS успешно загружен';
   });
-
+  console.log('listener is added')
   return view;
   });
 };
