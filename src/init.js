@@ -88,19 +88,20 @@ const submitHandler = (submitEvent, model) => {
 };
 
 export default async () => {
-  const view = new View();
-  const i18nextInstance = i18next.createInstance();
-  return i18nextInstance.init(
+
+  const initInstance = i18next.createInstance();
+  await initInstance.init(
     {
       lng: 'ru',
       resources,
     })
   .then((t) => {
+    const view = new View();
     view.init(t);
     view.renderTemplate.bind(view)();
-
+    return view;
   })
-  .then(() => {
+  .then((view) => {
     console.log('in promise start')
     const state = {
       process: 'waiting',
@@ -133,7 +134,7 @@ export default async () => {
     document.getElementById('feedback').textContent = 'RSS успешно загружен';
   });
 
-  return 'resolve';
+  return view;
   });
 };
 
