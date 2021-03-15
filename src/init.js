@@ -26,6 +26,7 @@ export default () => {
 
     button.addEventListener('click', (e) => {
       e.preventDefault();
+      console.log('button click')
       document.getElementById('feedback').textContent = 'RSS успешно загружен';
     });
 
