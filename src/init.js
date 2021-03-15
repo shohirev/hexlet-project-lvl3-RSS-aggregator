@@ -10,7 +10,7 @@ import update from './updateFeed';
 
 export default () => {
   return new Promise((resolve, reject) => {
-    const i18nextInstance = i18next.createInstance();
+    /*const i18nextInstance = i18next.createInstance();
     i18nextInstance.init(
     {
       lng: 'ru',
@@ -20,7 +20,7 @@ export default () => {
       const view = new View();
       view.init(t);
       view.renderTemplate.bind(view)();
-    });
+    });*/
 
     const button = document.querySelector('button[name=add]');
 
