@@ -32,6 +32,6 @@ export default () => {
     });
 
     console.log('button handled')
-    resolve('promise resolved');
+    resolve(this);
   });
 };
