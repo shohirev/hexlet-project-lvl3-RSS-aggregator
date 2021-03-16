@@ -31,6 +31,7 @@ export default () => {
       document.getElementById('feedback').textContent = 'RSS успешно загружен';
     });
 
+    console.log('button handled')
     resolve('promise resolved');
   });
 };
