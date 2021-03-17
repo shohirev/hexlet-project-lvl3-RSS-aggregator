@@ -9,29 +9,23 @@ import parseRSS from './RSSParser';
 import update from './updateFeed';
 
 export default () => {
-  return new Promise((resolve, reject) => {
-    const i18nextInstance = i18next.createInstance();
-    i18nextInstance.init(
-    {
-      lng: 'ru',
-      resources,
-    },
-    (err, t) => {
-      console.log('start cb in i18next')
+  const i18nextInstance = i18next.createInstance();
+  return i18nextInstance.init(
+  {
+    lng: 'ru',
+    resources,
+  }).then((t) => {
       const view = new View();
       view.init(t);
       view.renderTemplate.bind(view)();
-    });
-    console.log('start handling button')
-    const button = document.querySelector('button[name=add]');
 
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log('button click')
-      document.getElementById('feedback').textContent = 'RSS успешно загружен';
-    });
+      const button = document.querySelector('button[name=add]');
 
-    console.log('button handled')
-    resolve('resolved');
-  });
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('button click')
+        document.getElementById('feedback').textContent = 'RSS успешно загружен';
+      });
+    });
+    
 };
