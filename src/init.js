@@ -19,9 +19,10 @@ export default () => {
       view.init(t);
       view.renderTemplate.bind(view)();
 
-      const button = document.querySelector('button[name=add]');
+      const form = document.getElementById('rss-form');
 
-      button.addEventListener('click', (e) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
         console.log('button click')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
