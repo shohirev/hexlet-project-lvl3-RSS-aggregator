@@ -22,7 +22,7 @@ export default () => {
       const form = document.getElementById('rss-form');
       const input = document.getElementById('rss-input');
       const button = document.querySelector('.btn[name=add]');
-      console.log('form:', form.outerHTML);
+      console.log('form:', form);
       console.log('input:', input);
       console.log('button:', button);
 
