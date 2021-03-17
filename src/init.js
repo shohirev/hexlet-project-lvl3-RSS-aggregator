@@ -22,7 +22,6 @@ export default () => {
       const button = document.querySelector('button[name=add]');
 
       button.addEventListener('click', (e) => {
-        e.preventDefault();
         console.log('button click')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
