@@ -22,9 +22,9 @@ export default () => {
       const form = document.getElementById('rss-form');
       const input = document.getElementById('rss-input');
       const button = document.querySelector('.btn[name=add]');
-      console.log('form:', form);
-      console.log('input:', input);
-      console.log('button:', button);
+      console.log('form:', form, form.outerHTML);
+      console.log('input:', input, input.outerHTML);
+      console.log('button:', button, button.outerHTML);
 
       form.addEventListener('submit', (e) => {
         e.preventDefault()
