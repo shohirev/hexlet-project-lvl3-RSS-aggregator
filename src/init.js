@@ -19,7 +19,7 @@ export default () => {
       view.init(t);
       view.renderTemplate.bind(view)();
 
-      const form = document.getElementById('rss-form');
+      //const form = document.getElementById('rss-form');
       //const input = document.getElementById('rss-input');
       //const button = document.querySelector('.btn[name=add]');
       //console.log('form:', form, form.outerHTML);
@@ -32,12 +32,12 @@ export default () => {
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });*/
 
-      form.onsubmit = (e) => {
+      /*form.onsubmit = (e) => {
         e.preventDefault();
         console.log('form submitted onsubmit');
       };
       //console.log('form:', form, form.outerHTML);
-      console.log(form.onsubmit.toString());
+      console.log(form.onsubmit.toString());*/
 
       /*input.addEventListener('change', (e) => {
         console.log('input changed!');

@@ -58,6 +58,13 @@ export default class View {
 
     this.modalLinkBtn.textContent = this.i18nextInstance('templateText.modal.linkBtn');
     this.modalCloseBtn.textContent = this.i18nextInstance('templateText.modal.closeBtn');
+
+    const form = document.getElementById('rss-form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log('form submitted!')
+        document.getElementById('feedback').textContent = 'RSS успешно загружен';
+      });
   }
 
   renderRequest() {
