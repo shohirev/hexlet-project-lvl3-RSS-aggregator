@@ -20,25 +20,32 @@ export default () => {
       view.renderTemplate.bind(view)();
 
       const form = document.getElementById('rss-form');
-      const input = document.getElementById('rss-input');
-      const button = document.querySelector('.btn[name=add]');
-      console.log('form:', form, form.outerHTML);
-      console.log('input:', input, input.outerHTML);
-      console.log('button:', button, button.outerHTML);
+      //const input = document.getElementById('rss-input');
+      //const button = document.querySelector('.btn[name=add]');
+      //console.log('form:', form, form.outerHTML);
+      //console.log('input:', input, input.outerHTML);
+      //console.log('button:', button, button.outerHTML);
 
       form.addEventListener('submit', (e) => {
-        e.preventDefault()
+        e.preventDefault();
         console.log('form submitted!')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
 
-      input.addEventListener('change', (e) => {
+      /*form.onsubmit = (e) => {
+        e.preventDefault();
+        console.log('form submitted onsubmit');
+      };
+      console.log('form:', form, form.outerHTML);*/
+      console.log(form)
+
+      /*input.addEventListener('change', (e) => {
         console.log('input changed!');
       });
 
       button.addEventListener('click', (e) => {
         console.log('button clicked!');
-      });
+      });*/
     });
     
 };
