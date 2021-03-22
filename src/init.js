@@ -37,7 +37,7 @@ export default () => {
         console.log('form submitted onsubmit');
       };
       //console.log('form:', form, form.outerHTML);
-      console.log(form.onsubmit);
+      console.log(form.onsubmit.toString());
 
       /*input.addEventListener('change', (e) => {
         console.log('input changed!');
