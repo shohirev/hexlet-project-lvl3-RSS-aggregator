@@ -27,14 +27,14 @@ export default () => {
       //console.log('input:', input, input.outerHTML);
       //console.log('button:', button, button.outerHTML);
 
-      const event = new Event('customSubmit');
+      /*const event = new Event('customSubmit');
       form.addEventListener('customSubmit', (e) => {
         e.preventDefault();
         console.log('form submitted!')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
 
-      form.dispatchEvent(event);
+      form.dispatchEvent(event);*/
 
       /*form.onsubmit = (e) => {
         e.preventDefault();
