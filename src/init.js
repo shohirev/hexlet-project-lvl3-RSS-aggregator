@@ -16,8 +16,8 @@ export default () => {
     resources,
   }).then((t) => {
       const view = new View();
-      view.init(t);
-      view.renderTemplate.bind(view)();
+      //view.init(t);
+      //view.renderTemplate.bind(view)();
 
       const form = document.getElementById('rss-form');
 
@@ -50,6 +50,6 @@ export default () => {
       button.addEventListener('click', (e) => {
         console.log('button clicked!');
       });*/
-    });
+    }).then();
     
 };
