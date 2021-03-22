@@ -60,11 +60,11 @@ export default class View {
     this.modalCloseBtn.textContent = this.i18nextInstance('templateText.modal.closeBtn');
 
     const form = document.getElementById('rss-form');
-    form.addEventListener('submit', (e) => {
+    form.onsubmit = (e) => {
         e.preventDefault();
-        console.log('form submitted!')
-        document.getElementById('feedback').textContent = 'RSS успешно загружен';
-      });
+        console.log('form submitted onsubmit');
+      };
+      console.log(form.onsubmit.toString());
   }
 
   renderRequest() {
