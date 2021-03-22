@@ -19,18 +19,22 @@ export default () => {
       view.init(t);
       view.renderTemplate.bind(view)();
 
-      //const form = document.getElementById('rss-form');
+      const form = document.getElementById('rss-form');
+
       //const input = document.getElementById('rss-input');
       //const button = document.querySelector('.btn[name=add]');
       //console.log('form:', form, form.outerHTML);
       //console.log('input:', input, input.outerHTML);
       //console.log('button:', button, button.outerHTML);
 
-      /*form.addEventListener('submit', (e) => {
+      const event = new Event('customSubmit');
+      form.addEventListener('customSubmit', (e) => {
         e.preventDefault();
         console.log('form submitted!')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
-      });*/
+      });
+
+      form.dispatchEvent(event);
 
       /*form.onsubmit = (e) => {
         e.preventDefault();
