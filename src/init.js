@@ -16,40 +16,22 @@ export default () => {
     resources,
   }).then((t) => {
       const view = new View();
-      //view.init(t);
-      //view.renderTemplate.bind(view)();
+      view.init(t);
+      view.renderTemplate.bind(view)();
 
       const form = document.getElementById('rss-form');
+      const input = document.getElementById('rss-input');
+      const button = document.querySelector('.btn[name=add]');
+      console.log('form:', form, form.outerHTML);
+      console.log('input:', input, input.outerHTML);
+      console.log('button:', button, button.outerHTML);
 
-      //const input = document.getElementById('rss-input');
-      //const button = document.querySelector('.btn[name=add]');
-      //console.log('form:', form, form.outerHTML);
-      //console.log('input:', input, input.outerHTML);
-      //console.log('button:', button, button.outerHTML);
-
-      /*const event = new Event('customSubmit');
-      form.addEventListener('customSubmit', (e) => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
         console.log('form submitted!')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
 
-      form.dispatchEvent(event);*/
-
-      /*form.onsubmit = (e) => {
-        e.preventDefault();
-        console.log('form submitted onsubmit');
-      };
-      //console.log('form:', form, form.outerHTML);
-      console.log(form.onsubmit.toString());*/
-
-      /*input.addEventListener('change', (e) => {
-        console.log('input changed!');
-      });
-
-      button.addEventListener('click', (e) => {
-        console.log('button clicked!');
-      });*/
-    }).then();
-    
+      form.dispatchEvent(new Event('submit'));
+    });
 };
