@@ -38,6 +38,6 @@ export default () => {
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       };
 
-      console.log('eventListener:', form.onsubmit)
+      console.log('eventListener:', form.onsubmit.toString())
     });
 };
