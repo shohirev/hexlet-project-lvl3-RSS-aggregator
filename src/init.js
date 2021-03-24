@@ -31,7 +31,5 @@ export default () => {
         console.log('form submitted!')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
-
-      form.dispatchEvent(new Event('submit'));
     });
 };
