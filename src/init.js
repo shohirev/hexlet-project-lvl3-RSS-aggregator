@@ -26,18 +26,12 @@ export default () => {
       console.log('input:', input, input.outerHTML);
       console.log('button:', button, button.outerHTML);
 
-      /*form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
         console.log('form submitted!')
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
-      });*/
+      });
 
-      form.onsubmit = (e) => {
-        e.preventDefault();
-        console.log('form submitted!')
-        document.getElementById('feedback').textContent = 'RSS успешно загружен';
-      };
-
-      console.log('eventListener:', form.onsubmit.toString())
+      form.dispatch(new Event('submit'));
     });
 };
