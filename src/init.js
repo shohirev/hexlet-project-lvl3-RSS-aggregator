@@ -32,6 +32,6 @@ export default () => {
         document.getElementById('feedback').textContent = 'RSS успешно загружен';
       });
 
-      form.dispatch(new Event('submit'));
+      form.dispatchEvent(new Event('submit'));
     });
 };
