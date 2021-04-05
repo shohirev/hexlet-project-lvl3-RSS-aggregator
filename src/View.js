@@ -70,7 +70,7 @@ export default class View {
   }
 
   renderRequest() {
-    this.formFieldset.setAttribute('disable', 'disable');
+    //this.formFieldset.setAttribute('disable', 'disable');
   }
 
   renderError(model) {
@@ -81,7 +81,7 @@ export default class View {
       `errorFeedback.${currentError.type}`,
     );
 
-    this.formFieldset.removeAttribute('disable');
+    //this.formFieldset.removeAttribute('disable');
   }
 
   renderPosts(model) {
@@ -161,7 +161,7 @@ export default class View {
     this.renderPosts(model);
 
     this.inputField.value = '';
-    this.formFieldset.removeAttribute('disable');
+    //this.formFieldset.removeAttribute('disable');
   }
 
   presentPreview(model) {
