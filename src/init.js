@@ -45,6 +45,14 @@ export default () => {
         }
       });
 
+      const formBtn = document.querySelector('button[name=add]');
+      console.log('button:', formBtn)
+      formBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('click!!')
+      });
+
+
       const form = document.getElementById('rss-form');
 
       form.addEventListener('submit', (e) => {
