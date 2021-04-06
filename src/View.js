@@ -71,6 +71,7 @@ export default class View {
 
   renderRequest() {
     //this.formFieldset.setAttribute('disable', 'disable');
+    this.inputField.setAttribute('readonly', true);
   }
 
   renderError(model) {
@@ -82,6 +83,7 @@ export default class View {
     );
 
     //this.formFieldset.removeAttribute('disable');
+    this.inputField.removeAttribute('readonly');
   }
 
   renderPosts(model) {
@@ -162,6 +164,7 @@ export default class View {
 
     this.inputField.value = '';
     //this.formFieldset.removeAttribute('disable');
+    this.inputField.removeAttribute('readonly');
   }
 
   presentPreview(model) {
