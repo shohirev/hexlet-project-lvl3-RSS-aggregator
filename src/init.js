@@ -48,7 +48,7 @@ export default () => {
       const formBtn = document.querySelector('button[name=add]');
       console.log('button:', formBtn)
       formBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         console.log('click!!')
       });
 
