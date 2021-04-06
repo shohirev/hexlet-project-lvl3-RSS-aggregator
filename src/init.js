@@ -45,11 +45,8 @@ export default () => {
         }
       });
 
-      const form = document.getElementById('rss-form');
-
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        console.log(123)
 
         watchedState.process = 'processingRequest';
 
