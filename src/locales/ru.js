@@ -15,7 +15,7 @@ export default {
     errorFeedback: {
       duplicationUrlError: 'RSS уже существует',
       invalidRssUrlError: 'Ссылка должна быть валидным URL',
-      networkError: 'Network error, try again later...',
+      networkError: 'Ошибка сети',
       parsingError: 'Ресурс не содержит валидный RSS',
     },
     successfulLoadingReport: 'RSS успешно загружен',
