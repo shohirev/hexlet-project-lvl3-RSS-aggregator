@@ -72,6 +72,7 @@ export default class View {
   renderRequest() {
     //this.formFieldset.setAttribute('disable', 'disable');
     this.inputField.setAttribute('readonly', true);
+    this.addChannelsBtn.setAttribute('disabled', true);
   }
 
   renderError(model) {
@@ -84,6 +85,7 @@ export default class View {
 
     //this.formFieldset.removeAttribute('disable');
     this.inputField.removeAttribute('readonly');
+    this.addChannelsBtn.removeAttribute('disabled');
   }
 
   renderPosts(model) {
@@ -165,6 +167,7 @@ export default class View {
     this.inputField.value = '';
     //this.formFieldset.removeAttribute('disable');
     this.inputField.removeAttribute('readonly');
+    this.addChannelsBtn.removeAttribute('disabled');
   }
 
   presentPreview(model) {
