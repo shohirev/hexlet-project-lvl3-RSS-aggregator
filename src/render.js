@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
-//const mainTitle = document.querySelector('title');
+const mainTitle = document.querySelector('title');
 const addChannelsBtn = document.querySelector('.btn[name=add]');
-console.log(addChannelsBtn.outerHTML)
 const inputField = document.getElementById('rss-input');
 const feedbackContainer = document.getElementById('feedback');
 const feedsListTitle = document.querySelector('div#feeds h2');
@@ -15,12 +14,21 @@ const modalFollowLinkBtn = document.getElementById('modalFollowLinkBtn');
 const modalCloseBtn = document.getElementById('modalCloseBtn');
 
 const renderTemplate = (i18nextTranslate) => {
-  const mainTitle = document.querySelector('title');
   mainTitle.textContent = i18nextTranslate('templateText.title');
   inputField.placeholder = i18nextTranslate('templateText.placeholder');
   addChannelsBtn.textContent = i18nextTranslate('templateText.addChannelsBtn');
   modalFollowLinkBtn.textContent = i18nextTranslate('templateText.modal.followLinkBtn');
   modalCloseBtn.textContent = i18nextTranslate('templateText.modal.closeBtn');
+};
+
+const toggleForm = (model) => {
+  if (model.process === 'processingRequest') {
+    inputField.setAttribute('readonly', true);
+    addChannelsBtn.setAttribute('disabled', true);
+  } else {
+    inputField.removeAttribute('readonly');
+    addChannelsBtn.removeAttribute('disabled');
+  }
 };
 
 const renderFeedback = (model, i18nextTranslate) => {
@@ -41,15 +49,6 @@ const renderModalWindow = (model) => {
   modalTitle.textContent = model.uiState.modalWindow.title;
   modalBody.textContent = model.uiState.modalWindow.body;
   modalFollowLinkBtn.setAttribute('href', model.uiState.modalWindow.link);
-};
-
-const toggleForm = (model) => {
-  if (model.process === 'processingRequest') {
-    inputField.setAttribute('readonly', true);
-    addChannelsBtn.setAttribute('disabled', true);
-  }
-  inputField.removeAttribute('readonly');
-  addChannelsBtn.removeAttribute('disabled');
 };
 
 const render = (model, i18nextTranslate) => {
@@ -118,4 +117,16 @@ const render = (model, i18nextTranslate) => {
   });
 };
 
-export { renderTemplate, toggleForm, render };
+export default (model, i18nextTranslate) => {
+  const renders = {
+    initializing: () => { renderTemplate(i18nextTranslate) },
+    processingRequest: () => { toggleForm(model) },
+    waiting: () => { render(model, i18nextTranslate) },
+  };
+
+  if (_.has(renders, model.process)) {
+    renders[model.process]();
+  }
+};
+
+//export { renderTemplate, toggleForm, render };

@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import i18next from 'i18next';
 import _ from 'lodash';
-import { renderTemplate, toggleForm, render } from './render';
+import render from './render';
 import resources from './locales/index';
 import proxify from './proxify';
 import parseRSS from './RSSParser';
@@ -17,10 +17,8 @@ export default () => {
       resources,
     })
     .then((translate) => {
-      renderTemplate(translate);
-
       const state = {
-        process: 'waiting',
+        process: 'initializing',
         feeds: [],
         items: {},
         loadedFeeds: [],
@@ -37,15 +35,18 @@ export default () => {
       };
 
       const watchedState = onChange(state, (changedStateSection, currentProcess) => {
-        const renders = {
+        /*const renders = {
           processingRequest: () => toggleForm(watchedState),
           waiting: () => render(watchedState, translate),
         };
 
         if (changedStateSection === 'process' && _.has(renders, currentProcess)) {
           renders[currentProcess]();
-        }
+        }*/
+        render(watchedState, translate);
       });
+
+      render(watchedState, translate);
 
       const form = document.getElementById('rss-form');
 
