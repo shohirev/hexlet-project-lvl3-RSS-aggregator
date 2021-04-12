@@ -35,14 +35,6 @@ export default () => {
       };
 
       const watchedState = onChange(state, (changedStateSection, currentProcess) => {
-        /*const renders = {
-          processingRequest: () => toggleForm(watchedState),
-          waiting: () => render(watchedState, translate),
-        };
-
-        if (changedStateSection === 'process' && _.has(renders, currentProcess)) {
-          renders[currentProcess]();
-        }*/
         render(watchedState, translate);
       });
 

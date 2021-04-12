@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const mainTitle = document.querySelector('title');
+//const mainTitle = document.querySelector('title');
 const addChannelsBtn = document.querySelector('.btn[name=add]');
 const inputField = document.getElementById('rss-input');
 const feedbackContainer = document.getElementById('feedback');
@@ -14,6 +14,7 @@ const modalFollowLinkBtn = document.getElementById('modalFollowLinkBtn');
 const modalCloseBtn = document.getElementById('modalCloseBtn');
 
 const renderTemplate = (i18nextTranslate) => {
+  const mainTitle = document.querySelector('title');
   mainTitle.textContent = i18nextTranslate('templateText.title');
   inputField.placeholder = i18nextTranslate('templateText.placeholder');
   addChannelsBtn.textContent = i18nextTranslate('templateText.addChannelsBtn');
