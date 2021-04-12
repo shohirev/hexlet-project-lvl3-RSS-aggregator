@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 //const mainTitle = document.querySelector('title');
 const addChannelsBtn = document.querySelector('.btn[name=add]');
+console.log(addChannelsBtn.outerHTML)
 const inputField = document.getElementById('rss-input');
 const feedbackContainer = document.getElementById('feedback');
 const feedsListTitle = document.querySelector('div#feeds h2');
