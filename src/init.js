@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import i18next from 'i18next';
 import _ from 'lodash';
-import View from './View';
+import { renderTemplate, toggleForm, render } from './render';
 import resources from './locales/index';
 import proxify from './proxify';
 import parseRSS from './RSSParser';
@@ -17,34 +17,35 @@ export default () => {
       resources,
     })
     .then((translate) => {
-      const view = new View(translate);
-      view.init.bind(view)();
-      view.renderTemplate.bind(view)();
-      return view;
-    })
-    .then((view) => {
+      renderTemplate(translate);
+
       const state = {
         process: 'waiting',
         feeds: [],
         items: {},
         loadedFeeds: [],
-        errors: [],
+        viewedPosts: [],
+        error: null,
         uiState: {
-          readItems: [],
+          input: '',
           modalWindow: {
-            title: null,
-            body: null,
-            link: null,
+            title: '',
+            body: '',
+            link: '',
           },
         },
       };
 
-      const watchedState = onChange(state, (changedStateSection) => {
-        if (changedStateSection === 'process') {
-          view.render(watchedState);
+      const watchedState = onChange(state, (changedStateSection, currentProcess) => {
+        const renders = {
+          processingRequest: () => toggleForm(watchedState),
+          waiting: () => render(watchedState, translate),
+        };
+
+        if (changedStateSection === 'process' && _.has(renders, currentProcess)) {
+          renders[currentProcess]();
         }
       });
-
 
       const form = document.getElementById('rss-form');
 
@@ -55,7 +56,7 @@ export default () => {
 
         const rssChannelUrl = document.getElementById('rss-input').value;
 
-        const rssUrlValidationSchema = yup
+        const validationSchema = yup
           .string()
           .notOneOf(watchedState.loadedFeeds, 'duplicationUrlError')
           .matches(
@@ -64,35 +65,27 @@ export default () => {
           );
 
         try {
-          rssUrlValidationSchema.validateSync(rssChannelUrl);
+          validationSchema.validateSync(rssChannelUrl);
         } catch (validationError) {
-          const errorMessage = validationError.errors[0];
-          watchedState.errors = [
-            ...watchedState.errors,
-            { error: validationError, type: errorMessage },
-          ];
-          watchedState.process = 'processingError';
+          const error = validationError.errors[0];
+          watchedState.error = error;
+          watchedState.uiState.input = rssChannelUrl;
+          watchedState.process = 'waiting';
           return;
         }
 
         axios
           .get(proxify(rssChannelUrl))
           .then((response) => response.data)
-          .catch((networkError) => {
-            watchedState.errors = [
-              ...watchedState.errors,
-              { error: networkError, type: 'networkError' },
-            ];
-            watchedState.process = 'processingError';
+          .catch(() => {
+            watchedState.error = 'networkError';
+            watchedState.uiState.input = rssChannelUrl;
+            watchedState.process = 'waiting';
           })
           .then((data) => {
             const parsedRssChannel = parseRSS(data.contents);
-            watchedState.loadedFeeds = [
-              ...watchedState.loadedFeeds,
-              rssChannelUrl,
-            ];
 
-            const feedId = _.uniqueId();
+            const id = _.uniqueId();
             const title = parsedRssChannel.querySelector('channel title')
               .textContent;
             const description = parsedRssChannel.querySelector(
@@ -100,15 +93,6 @@ export default () => {
             ).textContent;
             const link = parsedRssChannel.querySelector('channel link')
               .textContent;
-            watchedState.feeds = [
-              {
-                feedId,
-                title,
-                description,
-                link,
-              },
-              ...watchedState.feeds,
-            ];
 
             const currentFeedItems = Array.from(
               parsedRssChannel.querySelectorAll('item'),
@@ -124,20 +108,22 @@ export default () => {
               },
             );
 
-            watchedState.items[feedId] = currentFeedItems;
-
-            watchedState.process = 'processingFeeds';
+            watchedState.loadedFeeds = [...watchedState.loadedFeeds, rssChannelUrl];
+            watchedState.feeds = [{
+              id, title, description, link,
+            }, ...watchedState.feeds];
+            watchedState.items = _.merge({ [id]: currentFeedItems }, watchedState.items);
+            watchedState.uiState.input = '';
+            watchedState.process = 'waiting';
 
             setTimeout(() => {
-              update(rssChannelUrl, 5000, watchedState, feedId);
+              update(rssChannelUrl, 5000, watchedState, id);
             }, 5000);
           })
-          .catch((parsingError) => {
-            watchedState.errors = [
-              ...watchedState.errors,
-              { error: parsingError, type: 'parsingError' },
-            ];
-            watchedState.process = 'processingError';
+          .catch(() => {
+            watchedState.error = 'parsingError';
+            watchedState.uiState.input = rssChannelUrl;
+            watchedState.process = 'waiting';
           });
       });
     });

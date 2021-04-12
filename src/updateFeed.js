@@ -26,7 +26,7 @@ const updateFeed = (url, interval, model, feedId) => {
 
     if (!_.isEmpty(newItems)) {
       model.items[feedId] = [...newItems, ...storedItems];
-      model.process = 'processingUpdates';
+      model.process = 'waiting';
     }
 
     setTimeout(() => {

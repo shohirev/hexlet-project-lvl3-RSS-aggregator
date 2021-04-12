@@ -8,16 +8,16 @@ export default {
       feedsListTitle: 'Фиды',
       postsListTitle: 'Посты',
       modal: {
-        linkBtn: 'Читать полностью',
+        followLinkBtn: 'Читать полностью',
         closeBtn: 'Закрыть',
       },
     },
-    errorFeedback: {
+    feedback: {
       duplicationUrlError: 'RSS уже существует',
       invalidRssUrlError: 'Ссылка должна быть валидным URL',
       networkError: 'Ошибка сети',
       parsingError: 'Ресурс не содержит валидный RSS',
+      successfulLoading: 'RSS успешно загружен',
     },
-    successfulLoadingReport: 'RSS успешно загружен',
   },
 };
