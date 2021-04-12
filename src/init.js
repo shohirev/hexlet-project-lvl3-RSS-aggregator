@@ -34,8 +34,12 @@ export default () => {
         },
       };
 
-      const watchedState = onChange(state, (changedStateSection, currentProcess) => {
-        render(watchedState, translate);
+      const watchedState = onChange(state, (changedStateSection, changedStateValue) => {
+        const renderingProcesses = ['initializing', 'processingRequest', 'waiting'];
+
+        if (changedStateSection === 'process' && _.includes(renderingProcesses, changedStateValue)) {
+          render(watchedState, translate);
+        }
       });
 
       render(watchedState, translate);
@@ -101,6 +105,7 @@ export default () => {
               },
             );
 
+            watchedState.error = null;
             watchedState.loadedFeeds = [...watchedState.loadedFeeds, rssChannelUrl];
             watchedState.feeds = [{
               id, title, description, link,
