@@ -8,21 +8,11 @@ const updateFeed = (url, interval, model, feedId) => {
     model.process = 'updating';
 
     const parsedRssChannel = parseRSS(response.data.contents);
-    const downloadedItems = Array.from(
-      parsedRssChannel.querySelectorAll('item'),
-      (itemNode) => {
-        const item = {
-          guid: itemNode.querySelector('guid').textContent,
-          title: itemNode.querySelector('title').textContent,
-          description: itemNode.querySelector('description').textContent,
-          link: itemNode.querySelector('link').textContent,
-        };
-        return item;
-      },
-    );
-    const storedItems = model.items[feedId];
 
-    const newItems = _.differenceBy(downloadedItems, storedItems, 'title');
+    const downloadedPosts = parsedRssChannel.posts;
+    const storedPosts = model.posts[feedId];
+
+    const newPosts = _.differenceBy(downloadedItems, storedItems, 'title');
 
     if (!_.isEmpty(newItems)) {
       model.items[feedId] = [...newItems, ...storedItems];

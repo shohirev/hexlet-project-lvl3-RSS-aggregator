@@ -1,8 +1,8 @@
 import onChange from 'on-change';
-import * as yup from 'yup';
 import axios from 'axios';
 import i18next from 'i18next';
 import _ from 'lodash';
+import validate from './validator';
 import render from './render';
 import resources from './locales/index';
 import proxify from './proxify';
@@ -20,8 +20,7 @@ export default () => {
       const state = {
         process: 'initializing',
         feeds: [],
-        items: {},
-        loadedFeeds: [],
+        posts: {},
         viewedPosts: [],
         error: null,
         uiState: {
@@ -53,64 +52,26 @@ export default () => {
 
         const rssChannelUrl = document.getElementById('rss-input').value;
 
-        const validationSchema = yup
-          .string()
-          .notOneOf(watchedState.loadedFeeds, 'duplicationUrlError')
-          .matches(
-            /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([w#!:.?+=&%@!]))?/,
-            'invalidRssUrlError',
-          );
-
-        try {
-          validationSchema.validateSync(rssChannelUrl);
-        } catch (validationError) {
-          const error = validationError.errors[0];
-          watchedState.error = error;
-          watchedState.uiState.input = rssChannelUrl;
-          watchedState.process = 'waiting';
-          return;
-        }
+        validate(rssChannelUrl, watchedState);
 
         axios
           .get(proxify(rssChannelUrl))
-          .then((response) => response.data)
+          .then((response) => response.data.contents)
           .catch(() => {
             watchedState.error = 'networkError';
             watchedState.uiState.input = rssChannelUrl;
             watchedState.process = 'waiting';
           })
-          .then((data) => {
-            const parsedRssChannel = parseRSS(data.contents);
-
+          .then((rssChannel) => {
+            const parsedRssChannel = parseRSS(rssChannel);
             const id = _.uniqueId();
-            const title = parsedRssChannel.querySelector('channel title')
-              .textContent;
-            const description = parsedRssChannel.querySelector(
-              'channel description',
-            ).textContent;
-            const link = parsedRssChannel.querySelector('channel link')
-              .textContent;
-
-            const currentFeedItems = Array.from(
-              parsedRssChannel.querySelectorAll('item'),
-              (itemNode) => {
-                const item = {
-                  guid: itemNode.querySelector('guid').textContent,
-                  title: itemNode.querySelector('title').textContent,
-                  description: itemNode.querySelector('description')
-                    .textContent,
-                  link: itemNode.querySelector('link').textContent,
-                };
-                return item;
-              },
-            );
+            const { title, description, posts } = parsedRssChannel;
 
             watchedState.error = null;
-            watchedState.loadedFeeds = [...watchedState.loadedFeeds, rssChannelUrl];
             watchedState.feeds = [{
-              id, title, description, link,
+              id, url: rssChannelUrl, title, description,
             }, ...watchedState.feeds];
-            watchedState.items = _.merge({ [id]: currentFeedItems }, watchedState.items);
+            watchedState.posts = _.merge({ [id]: posts }, watchedState.posts);
             watchedState.uiState.input = '';
             watchedState.process = 'waiting';
 
