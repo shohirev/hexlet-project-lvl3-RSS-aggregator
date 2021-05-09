@@ -60,7 +60,8 @@ export default () => {
         axios
           .get(proxify(rssChannelUrl))
           .then((response) => response.data.contents)
-          .catch(() => {
+          .catch((err) => {
+            console.log(err)
             watchedState.error = 'networkError';
             watchedState.process = 'waiting';
           })
