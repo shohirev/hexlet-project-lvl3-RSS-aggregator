@@ -45,6 +45,7 @@ export default () => {
         watchedState.process = 'processingRequest';
 
         const rssChannelUrl = document.getElementById('rss-input').value;
+        console.log(rssChannelUrl)
 
         try {
           const loadedUrls = watchedState.feeds.map((feed) => feed.url);
