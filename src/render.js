@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-
-
 export default (model, i18nextTranslate) => {
   const mainTitle = document.querySelector('title');
   const addChannelsBtn = document.querySelector('.btn[name=add]');
@@ -15,7 +13,7 @@ export default (model, i18nextTranslate) => {
   const modalBody = document.querySelector('.modal-body');
   const modalFollowLinkBtn = document.getElementById('modalFollowLinkBtn');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
-  
+
   switch (model.process) {
     case 'initializing':
       mainTitle.textContent = i18nextTranslate('templateText.title');

@@ -1,5 +1,6 @@
 export default (url) => {
-  const proxyUrl = 'https://hexlet-allorigins.herokuapp.com/get';
-  const search = `?disableCache=true&url=${url}`;
-  return new URL(`${proxyUrl}${search}`);
+  const proxyUrl = new URL('https://hexlet-allorigins.herokuapp.com/get');
+  proxyUrl.searchParams.set('disableCache', true);
+  proxyUrl.searchParams.set('url', url);
+  return proxyUrl.toString();
 };

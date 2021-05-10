@@ -45,7 +45,6 @@ export default () => {
         watchedState.process = 'processingRequest';
 
         const rssChannelUrl = document.getElementById('rss-input').value;
-        console.log(rssChannelUrl)
 
         try {
           const loadedUrls = watchedState.feeds.map((feed) => feed.url);
@@ -60,8 +59,7 @@ export default () => {
         axios
           .get(proxify(rssChannelUrl))
           .then((response) => response.data.contents)
-          .catch((err) => {
-            console.log(err)
+          .catch(() => {
             watchedState.error = 'networkError';
             watchedState.process = 'waiting';
           })
