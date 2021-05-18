@@ -9,6 +9,7 @@ import parseRSS from './RSSParser';
 import update from './updateFeed';
 
 export default () => {
+  console.log('init start!!')
   const i18nextInstance = i18next.createInstance();
   return i18nextInstance
     .init({
