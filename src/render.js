@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-const mainTitle = document.querySelector('title');
+//const mainTitle = document.querySelector('title');
 const addChannelsBtn = document.querySelector('.btn[name=add]');
 const inputField = document.getElementById('rss-input');
 const feedbackContainer = document.getElementById('feedback');
@@ -18,7 +18,7 @@ export default (model, i18nextTranslate) => {
 
   switch (model.process) {
     case 'initializing':
-      mainTitle.textContent = i18nextTranslate('templateText.title');
+      //mainTitle.textContent = i18nextTranslate('templateText.title');
       inputField.placeholder = i18nextTranslate('templateText.placeholder');
       addChannelsBtn.textContent = i18nextTranslate('templateText.addChannelsBtn');
       modalFollowLinkBtn.textContent = i18nextTranslate('templateText.modal.followLinkBtn');
