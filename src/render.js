@@ -1,22 +1,20 @@
 /* eslint-disable no-param-reassign */
 
-//console.log(document.head.outerHTML)
-//console.log(document.body.outerHTML)
-const mainTitle = document.querySelector('title');
-const addChannelsBtn = document.querySelector('.btn[name=add]');
-const inputField = document.getElementById('rss-input');
-const feedbackContainer = document.getElementById('feedback');
-const feedsListTitle = document.querySelector('div#feeds h2');
-const postsListTitle = document.querySelector('div#posts h2');
-const feedsList = document.getElementById('feeds-list');
-const postsList = document.getElementById('posts-list');
-const modalTitle = document.querySelector('.modal-title');
-const modalBody = document.querySelector('.modal-body');
-const modalFollowLinkBtn = document.getElementById('modalFollowLinkBtn');
-const modalCloseBtn = document.getElementById('modalCloseBtn');
-
-export default (model, i18nextTranslate) => {
-  console.log('render start!!')
+export default (model, elements, i18nextTranslate) => {
+  const {
+    mainTitle,
+    addChannelsBtn,
+    inputField,
+    feedbackContainer,
+    feedsListTitle,
+    postsListTitle,
+    feedsList,
+    postsList,
+    modalTitle,
+    modalBody,
+    modalFollowLinkBtn,
+    modalCloseBtn,
+  } = elements;
 
   switch (model.process) {
     case 'initializing':

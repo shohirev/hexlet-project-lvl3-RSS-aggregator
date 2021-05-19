@@ -9,9 +9,6 @@ import parseRSS from './RSSParser';
 import update from './updateFeed';
 
 export default () => {
-  console.log('init start!!')
-  //console.log('in init', document.head.outerHTML)
-  //console.log('in init', document.body.outerHTML)
   const i18nextInstance = i18next.createInstance();
   return i18nextInstance
     .init({
@@ -30,15 +27,30 @@ export default () => {
         },
       };
 
+      const pageElements = {
+        mainTitle: document.querySelector('title'),
+        addChannelsBtn: document.querySelector('.btn[name=add]'),
+        inputField: document.getElementById('rss-input'),
+        feedbackContainer: document.getElementById('feedback'),
+        feedsListTitle: document.querySelector('div#feeds h2'),
+        postsListTitle: document.querySelector('div#posts h2'),
+        feedsList: document.getElementById('feeds-list'),
+        postsList: document.getElementById('posts-list'),
+        modalTitle: document.querySelector('.modal-title'),
+        modalBody: document.querySelector('.modal-body'),
+        modalFollowLinkBtn: document.getElementById('modalFollowLinkBtn'),
+        modalCloseBtn: document.getElementById('modalCloseBtn'),
+      };
+
       const watchedState = onChange(state, (changedStateSection, changedStateValue) => {
         const renderingProcesses = ['initializing', 'processingRequest', 'waiting'];
 
         if (changedStateSection === 'process' && renderingProcesses.includes(changedStateValue)) {
-          render(watchedState, translate);
+          render(watchedState, pageElements, translate);
         }
       });
 
-      render(watchedState, translate);
+      render(watchedState, pageElements, translate);
 
       const form = document.getElementById('rss-form');
 
