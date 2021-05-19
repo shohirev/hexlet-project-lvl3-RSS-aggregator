@@ -10,6 +10,8 @@ import update from './updateFeed';
 
 export default () => {
   console.log('init start!!')
+  console.log('in init', document.head.outerHTML)
+  console.log('in init', document.body.outerHTML)
   const i18nextInstance = i18next.createInstance();
   return i18nextInstance
     .init({
