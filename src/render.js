@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-console.log(document.head.outerHTML)
-console.log(document.body.outerHTML)
+//console.log(document.head.outerHTML)
+//console.log(document.body.outerHTML)
 const mainTitle = document.querySelector('title');
 const addChannelsBtn = document.querySelector('.btn[name=add]');
 const inputField = document.getElementById('rss-input');
