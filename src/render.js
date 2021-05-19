@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-console.log(document)
+console.log(document.body)
 const mainTitle = document.querySelector('title');
 console.log(mainTitle.outerHTML)
 const addChannelsBtn = document.querySelector('.btn[name=add]');
