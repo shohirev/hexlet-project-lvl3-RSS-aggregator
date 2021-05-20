@@ -79,23 +79,22 @@ export default () => {
             watchedState.process = 'waiting';
           })
           .then((rssChannel) => {
-            watchedState.error = null;
-
             const parsedRssChannel = parseRSS(rssChannel);
             const { title, description, posts } = parsedRssChannel;
             const newFeed = { url: rssChannelUrl, title, description };
 
-            watchedState.feeds = [newFeed, ...watchedState.feeds];
-            watchedState.posts = [...posts, ...watchedState.posts];
+            watchedState.feeds.unshift(newFeed);
+            watchedState.posts.unshift(...posts);
 
+            watchedState.error = null;
             watchedState.process = 'waiting';
 
             setTimeout(() => {
               update(rssChannelUrl, watchedState);
             }, watchedState.updateInterval);
           })
-          .catch(() => {
-            watchedState.error = 'parsingError';
+          .catch((err) => {
+            watchedState.error = err.message;
             watchedState.process = 'waiting';
           });
       });

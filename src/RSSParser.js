@@ -2,6 +2,10 @@ export default (rssChannel) => {
   const parser = new DOMParser();
   const parsedRssChannel = parser.parseFromString(rssChannel, 'application/xml');
 
+  if (parsedRssChannel.documentElement.tagName === 'parsererror') {
+    throw new Error('parsingError');
+  }
+
   const title = parsedRssChannel.querySelector('channel title').textContent;
   const description = parsedRssChannel.querySelector('channel description').textContent;
 

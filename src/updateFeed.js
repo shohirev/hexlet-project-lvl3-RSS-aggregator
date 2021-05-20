@@ -18,7 +18,7 @@ const updateFeed = (url, model) => {
     const newPosts = differenceBy(downloadedPosts, storedPosts, 'title');
 
     if (!isEmpty(newPosts)) {
-      model.posts = [...newPosts, ...model.posts];
+      model.posts.unshift(...newPosts);
       model.process = 'waiting';
     }
   });
