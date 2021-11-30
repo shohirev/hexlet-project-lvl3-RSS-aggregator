@@ -87,8 +87,8 @@ export default (model, elements, i18nextTranslate) => {
         postLink.href = post.link;
         postLink.textContent = post.title;
         const postLinkStyle = post.isViewed
-          ? 'font-weight-normal'
-          : 'font-weight-bold';
+          ? 'fw-normal'
+          : 'fw-bold';
         postLink.classList.add(postLinkStyle);
         postWrapper.append(postLink);
 
